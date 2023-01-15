@@ -613,8 +613,16 @@ static void benchmarkA32Function(Arch arch, uint32_t numIterations, const char* 
   CodeHolder code;
   printf("%s:\n", description);
 
-  bench<a32::Assembler>(code, arch, numIterations, "[raw]", [&](a32::Assembler& cc) {
-    emitterFn(cc, false);
+  uint32_t instCount = 0;
+
+#ifndef ASMJIT_NO_BUILDER
+  instCount = asmjit_perf_utils::calculateInstructionCount<a32::Builder>(code, arch, [&](a32::Builder& emitter) {
+    emitterFn(emitter, false);
+  });
+#endif
+
+  asmjit_perf_utils::bench<a32::Assembler>(code, arch, numIterations, "[raw]", instCount, [&](a32::Assembler& emitter) {
+    emitterFn(emitter, false);
   });
 
   printf("\n");

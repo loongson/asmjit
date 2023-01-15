@@ -54,9 +54,6 @@ function regToOpcode(field, op, regType) {
   let vars = {"type": "uint32_t", "name": v, "init": `${op}.as<Reg>().id()`};
 
   for (let value of field.values) {
-    const mask = ((1 << (value.size)) - 1) << value.from;
-    const shift = value.index - value.from;
-
     if (value.from === 0 && value.size === 1)
       loHi += `Lo${value.index}`;
     else if (value.from === 4 && value.size === 1)
