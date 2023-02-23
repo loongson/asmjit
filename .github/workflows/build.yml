@@ -119,6 +119,7 @@ jobs:
         with:
           repository: build-actions/build-actions
           path: "build-actions"
+          ref: "dev"
 
       - name: "Python"
         uses: actions/setup-python@v4
@@ -157,6 +158,7 @@ jobs:
         include:
           - { host: "macos-12", os: "freebsd", osver: "13.1", cc: "clang", arch: "x86-64", build_type: "Release", defs: "ASMJIT_TEST=ON" }
           - { host: "macos-12", os: "openbsd", osver: "7.2" , cc: "clang", arch: "x86-64", build_type: "Release", defs: "ASMJIT_TEST=ON" }
+          - { host: "macos-12", os: "netbsd" , osver: "9.2" , cc: "clang", arch: "x86-64", build_type: "Release", defs: "ASMJIT_TEST=ON" }
 
     name: "${{matrix.os}}-${{matrix.osver}} (${{matrix.cc}}, ${{matrix.arch}}, ${{matrix.build_type}})"
     runs-on: ${{matrix.host}}
@@ -172,6 +174,7 @@ jobs:
         with:
           repository: build-actions/build-actions
           path: "build-actions"
+          ref: "dev"
 
       - name: Build & Test in VM
         uses: cross-platform-actions/action@master
@@ -186,7 +189,7 @@ jobs:
             PATH="/usr/sbin:/usr/pkg/sbin:/usr/pkg/bin:$PATH:$(pwd)/build-actions"
             export PATH
 
-            sh ./build-actions/install-python3.sh
+            sh ./build-actions/prepare-environment.sh
             python3 build-actions/action.py                       \
               --step=all                                          \
               --compiler=${{matrix.cc}}                           \
@@ -217,6 +220,7 @@ jobs:
         with:
           repository: build-actions/build-actions
           path: "build-actions"
+          ref: "dev"
 
       - name: Build & Test (VM)
         uses: vmactions/netbsd-vm@v0
@@ -230,7 +234,7 @@ jobs:
             PATH="/usr/sbin:/usr/pkg/sbin:/usr/pkg/bin:$PATH:$(pwd)/build-actions"
             export PATH
 
-            bash ./build-actions/install-python3.sh
+            bash ./build-actions/prepare-environment.sh
             python3 ./build-actions/action.py                     \
               --step=all                                          \
               --compiler=${{matrix.cc}}                           \
