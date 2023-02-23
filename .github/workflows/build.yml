@@ -185,9 +185,11 @@ jobs:
           shell: bash
           run: |
             set -e
-
             PATH="/usr/sbin:/usr/pkg/sbin:/usr/pkg/bin:$PATH:$(pwd)/build-actions"
+            CI_NETBSD_USE_PKGIN=1
+
             export PATH
+            export CI_NETBSD_USE_PKGIN
 
             sh ./build-actions/prepare-environment.sh
             python3 build-actions/action.py                       \
@@ -230,7 +232,6 @@ jobs:
           copyback: false
           run: |
             set -e
-
             PATH="/usr/sbin:/usr/pkg/sbin:/usr/pkg/bin:$PATH:$(pwd)/build-actions"
             export PATH
 
