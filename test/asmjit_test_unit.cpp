@@ -44,6 +44,7 @@ static const char* archToString(uint32_t arch) noexcept {
     case Environment::kArchAArch64  : return "AArch64";
     case Environment::kArchMIPS32_LE: return "MIPS";
     case Environment::kArchMIPS64_LE: return "MIPS64";
+    case Environment::kArchLOONGARCH64 : return "LOONGARCH64";
     default: return "Unknown";
   }
 }

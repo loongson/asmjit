@@ -247,7 +247,7 @@ enum ErrorCode : uint32_t {
   //! No code generated.
   //!
   //! Returned by runtime if the \ref CodeHolder contains no code.
-  kErrorNoCodeGenerated,
+  kErrorNoCodeGenerated,  //10
 
   //! Invalid directive.
   kErrorInvalidDirective,
@@ -271,7 +271,7 @@ enum ErrorCode : uint32_t {
   kErrorNonLocalLabelCannotHaveParent,
 
   //! Invalid section.
-  kErrorInvalidSection,
+  kErrorInvalidSection,  //20
   //! Too many sections (section index overflow).
   kErrorTooManySections,
   //! Invalid section name (most probably too long).
@@ -293,7 +293,7 @@ enum ErrorCode : uint32_t {
   //! Invalid register group.
   kErrorInvalidRegGroup,
   //! Invalid physical register id.
-  kErrorInvalidPhysId,
+  kErrorInvalidPhysId,  //30
   //! Invalid virtual register id.
   kErrorInvalidVirtId,
   //! Invalid element index (ARM).
@@ -313,7 +313,7 @@ enum ErrorCode : uint32_t {
   //! Invalid {...} register (X86|X64).
   kErrorInvalidExtraReg,
   //! Invalid {k} use (not supported by the instruction) (X86|X64).
-  kErrorInvalidKMaskUse,
+  kErrorInvalidKMaskUse,  //40
   //! Invalid {k}{z} use (not supported by the instruction) (X86|X64).
   kErrorInvalidKZeroUse,
   //! Invalid broadcast - Currently only related to invalid use of AVX-512 {1tox} (X86|X64).
@@ -333,7 +333,7 @@ enum ErrorCode : uint32_t {
   //! Invalid displacement (not encodable).
   kErrorInvalidDisplacement,
   //! Invalid segment (X86).
-  kErrorInvalidSegment,
+  kErrorInvalidSegment,  //50
 
   //! Invalid immediate (out of bounds on X86 and invalid pattern on ARM).
   kErrorInvalidImmediate,

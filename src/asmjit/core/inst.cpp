@@ -33,6 +33,10 @@
   #include "../arm/a64instapi_p.h"
 #endif
 
+#if !defined(ASMJIT_NO_LOONG)
+  #include "../loong/la64instapi_p.h"
+#endif
+
 ASMJIT_BEGIN_NAMESPACE
 
 // ============================================================================
@@ -51,6 +55,11 @@ Error InstAPI::instIdToString(uint32_t arch, uint32_t instId, String& output) no
     return a64::InstInternal::instIdToString(arch, instId, output);
 #endif
 
+#if !defined(ASMJIT_NO_LOONG)
+  if (Environment::isFamilyLOONGARCH(arch))
+    return la64::InstInternal::instIdToString(arch, instId, output);
+#endif
+
   return DebugUtils::errored(kErrorInvalidArch);
 }
 
@@ -63,6 +72,11 @@ uint32_t InstAPI::stringToInstId(uint32_t arch, const char* s, size_t len) noexc
 #ifdef ASMJIT_BUILD_ARM
   if (Environment::isArchAArch64(arch))
     return a64::InstInternal::stringToInstId(arch, s, len);
+#endif
+
+#if !defined(ASMJIT_NO_LOONG)
+  if (Environment::isFamilyLOONGARCH(arch))
+    return la64::InstInternal::stringToInstId(arch, s, len);
 #endif
 
   return 0;
@@ -83,6 +97,11 @@ Error InstAPI::validate(uint32_t arch, const BaseInst& inst, const Operand_* ope
 #ifdef ASMJIT_BUILD_ARM
   if (Environment::isArchAArch64(arch))
     return a64::InstInternal::validate(arch, inst, operands, opCount, validationFlags);
+#endif
+
+#if !defined(ASMJIT_NO_LOONG)
+  if (Environment::isFamilyLOONGARCH(arch))
+    return la64::InstInternal::validate(arch, inst, operands, opCount, validationFlags);
 #endif
 
   return DebugUtils::errored(kErrorInvalidArch);
@@ -108,6 +127,11 @@ Error InstAPI::queryRWInfo(uint32_t arch, const BaseInst& inst, const Operand_* 
     return a64::InstInternal::queryRWInfo(arch, inst, operands, opCount, out);
 #endif
 
+#if !defined(ASMJIT_NO_LOONG)
+  if (Environment::isFamilyLOONGARCH(arch))
+    return la64::InstInternal::queryRWInfo(arch, inst, operands, opCount, out);
+#endif
+
   return DebugUtils::errored(kErrorInvalidArch);
 }
 #endif // !ASMJIT_NO_INTROSPECTION
@@ -126,6 +150,11 @@ Error InstAPI::queryFeatures(uint32_t arch, const BaseInst& inst, const Operand_
 #ifdef ASMJIT_BUILD_ARM
   if (Environment::isArchAArch64(arch))
     return a64::InstInternal::queryFeatures(arch, inst, operands, opCount, out);
+#endif
+
+#if !defined(ASMJIT_NO_LOONG)
+  if (Environment::isFamilyLOONGARCH(arch))
+    return la64::InstInternal::queryFeatures(arch, inst, operands, opCount, out);
 #endif
 
   return DebugUtils::errored(kErrorInvalidArch);

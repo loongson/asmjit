@@ -309,6 +309,10 @@ struct OffsetFormat {
     kTypeAArch64_ADR,
     //! AARCH64 ADRP format of `[.|immlo:2|.....|immhi:19|.....]` (4kB pages).
     kTypeAArch64_ADRP,
+    //! Loongarch B/BL
+    kTypeLa64_BBL,
+    //! Loongarch BEQ/BNE/...
+    kTypeLa64_BEQ,
 
     //! Count of displacement types.
     kTypeCount

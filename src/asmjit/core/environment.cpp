@@ -56,6 +56,9 @@ uint32_t Environment::stackAlignment() const noexcept {
     if (isFamilyARM())
       return 8;
 
+    if (isFamilyLOONGARCH())
+      return 8;
+
     // Bail to 4-byte alignment if we don't know.
     return 4;
   }

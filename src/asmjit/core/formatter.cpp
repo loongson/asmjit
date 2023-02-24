@@ -42,6 +42,9 @@
   #include "../arm/armformatter_p.h"
 #endif
 
+#if !defined(ASMJIT_NO_LOONG)
+  #include "../loong/loongformatter_p.h"
+#endif
 ASMJIT_BEGIN_NAMESPACE
 
 #if defined(ASMJIT_NO_COMPILER)
@@ -130,6 +133,11 @@ Error formatFeature(
     return arm::FormatterInternal::formatFeature(sb, featureId);
 #endif
 
+#if !defined(ASMJIT_NO_LOONG)
+  if (Environment::isFamilyLOONGARCH(arch))
+    return loong::FormatterInternal::formatFeature(sb, featureId);
+#endif
+
   return kErrorInvalidArch;
 }
 
@@ -184,6 +192,11 @@ Error formatRegister(
     return arm::FormatterInternal::formatRegister(sb, formatFlags, emitter, arch, regType, regId);
 #endif
 
+#if !defined(ASMJIT_NO_LOONG)
+  if (Environment::isFamilyLOONGARCH(arch))
+    return loong::FormatterInternal::formatRegister(sb, formatFlags, emitter, arch, regType, regId);
+#endif
+
   return kErrorInvalidArch;
 }
 
@@ -202,6 +215,11 @@ Error formatOperand(
 #ifdef ASMJIT_BUILD_ARM
   if (Environment::isFamilyARM(arch))
     return arm::FormatterInternal::formatOperand(sb, formatFlags, emitter, arch, op);
+#endif
+
+#if !defined(ASMJIT_NO_LOONG)
+  if (Environment::isFamilyLOONGARCH(arch))
+    return loong::FormatterInternal::formatOperand(sb, formatFlags, emitter, arch, op);
 #endif
 
   return kErrorInvalidArch;
@@ -300,6 +318,11 @@ Error formatInstruction(
 #ifdef ASMJIT_BUILD_ARM
   if (Environment::isFamilyARM(arch))
     return arm::FormatterInternal::formatInstruction(sb, formatFlags, emitter, arch, inst, operands, opCount);
+#endif
+
+#if !defined(ASMJIT_NO_LOONG)
+  if (Environment::isFamilyLOONGARCH(arch))
+    return loong::FormatterInternal::formatInstruction(sb, formatFlags, emitter, arch, inst, operands, opCount);
 #endif
 
   return kErrorInvalidArch;

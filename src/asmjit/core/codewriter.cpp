@@ -67,6 +67,25 @@ bool CodeWriterUtils::encodeOffset32(uint32_t* dst, int64_t offset64, const Offs
       *dst = (immLo << 29) | (immHi << 5);
       return true;
     }
+    case OffsetFormat::kTypeLa64_BBL: {
+      if (format.valueSize() != 4 || bitCount != 26 || bitShift != 0)
+        return false;
+
+      uint32_t imm25_16 = uint32_t(offset32 >> 16) & 0x3FFu;
+      uint32_t imm15_0  = uint32_t(offset32) & 0xFFFFu;
+
+      *dst = (imm15_0 << 10) | (imm25_16 << 0);
+      return true;
+    }
+    case OffsetFormat::kTypeLa64_BEQ: {
+      if (format.valueSize() != 4 || bitCount != 16 || bitShift != 10)
+        return false;
+
+      uint32_t imm15_0  = offset32 & 0xFFFFu;
+
+      *dst = (imm15_0 << 10);
+      return true;
+    }
 
     default:
       return false;

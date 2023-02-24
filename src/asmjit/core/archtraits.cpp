@@ -33,6 +33,10 @@
   #include "../arm/armarchtraits_p.h"
 #endif
 
+#if !defined(ASMJIT_NO_LOONG)
+  #include "../loong/loongarchtraits_p.h"
+#endif
+
 ASMJIT_BEGIN_NAMESPACE
 
 // ============================================================================
@@ -108,7 +112,16 @@ ASMJIT_VARAPI const ArchTraits _archTraits[Environment::kArchCount] = {
 
   // MIPS32/MIPS64
   noArchTraits,
+  noArchTraits,
+
+#if !defined(ASMJIT_NO_LOONG)
+  noArchTraits,
+  loong::la64ArchTraits
+#else
+  noArchTraits,
   noArchTraits
+#endif
+
 };
 
 // ============================================================================

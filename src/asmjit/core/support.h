@@ -698,6 +698,26 @@ static constexpr bool isInt10(T x) noexcept {
                                   : sizeof(T) <= 1 || U(x) <= U(511u);
 }
 
+//! Checks whether the given integer `x` can be casted to a 11-bit signed integer.
+template<typename T>
+static constexpr bool isInt11(T x) noexcept {
+  typedef typename std::make_signed<T>::type S;
+  typedef typename std::make_unsigned<T>::type U;
+
+  return std::is_signed<T>::value ? sizeof(T) <= 1 || isBetween<S>(S(x), -1024, 1023)
+                                  : sizeof(T) <= 1 || U(x) <= U(1023u);
+}
+
+//! Checks whether the given integer `x` can be casted to a 12-bit signed integer.
+template<typename T>
+static constexpr bool isInt12(T x) noexcept {
+  typedef typename std::make_signed<T>::type S;
+  typedef typename std::make_unsigned<T>::type U;
+
+  return std::is_signed<T>::value ? sizeof(T) <= 1 || isBetween<S>(S(x), -2048, 2047)
+                                  : sizeof(T) <= 1 || U(x) <= U(2047u);
+}
+
 //! Checks whether the given integer `x` can be casted to a 16-bit signed integer.
 template<typename T>
 static constexpr bool isInt16(T x) noexcept {

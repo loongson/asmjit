@@ -109,8 +109,13 @@ public:
     //! 64-bit MIPS architecture in (big endian).
     kArchMIPS64_BE = kArchMIPS64_LE | kArchBigEndianMask,
 
+    //! Loongarch32 (little endian)
+    kArchLOONGARCH32 = 11,
+    //! Loongarch64 (little endian)
+    kArchLOONGARCH64 = 12,
+
     //! Count of architectures.
-    kArchCount = 11
+    kArchCount = 13
   };
 
   //! Sub-architecture.
@@ -250,6 +255,7 @@ public:
     ASMJIT_ARCH_MIPS == 32 && ASMJIT_ARCH_BE ? kArchMIPS32_BE :
     ASMJIT_ARCH_MIPS == 64 && ASMJIT_ARCH_LE ? kArchMIPS64_LE :
     ASMJIT_ARCH_MIPS == 64 && ASMJIT_ARCH_BE ? kArchMIPS64_BE :
+    ASMJIT_ARCH_LOONGARCH == 64 ? kArchLOONGARCH64 :
 
     kArchUnknown;
 
@@ -419,6 +425,7 @@ public:
   inline bool isArchAArch64() const noexcept { return (_arch & ~kArchBigEndianMask) == kArchAArch64; }
   inline bool isArchMIPS32() const noexcept { return (_arch & ~kArchBigEndianMask) == kArchMIPS32_LE; }
   inline bool isArchMIPS64() const noexcept { return (_arch & ~kArchBigEndianMask) == kArchMIPS64_LE; }
+  inline bool isArchLOONGARCH64() const noexcept { return _arch == kArchLOONGARCH64; }
 
   //! Tests whether the architecture is 32-bit.
   inline bool is32Bit() const noexcept { return is32Bit(_arch); }
@@ -438,6 +445,7 @@ public:
   inline bool isFamilyARM() const noexcept { return isFamilyARM(_arch); }
   //! Tests whether this architecture family is MISP or MIPS64.
   inline bool isFamilyMIPS() const noexcept { return isFamilyMIPS(_arch); }
+  inline bool isFamilyLOONGARCH() const noexcept { return isFamilyLOONGARCH(_arch); }
 
   //! Tests whether the environment platform is Windows.
   inline bool isPlatformWindows() const noexcept { return _platform == kPlatformWindows; }
@@ -553,7 +561,9 @@ public:
     return arch == kArchMIPS32_LE ||
            arch == kArchMIPS64_LE;
   }
-
+  static inline bool isFamilyLOONGARCH(uint32_t arch) noexcept {
+    return arch == kArchLOONGARCH64;
+  }
   //! Returns a native general purpose register size from the given architecture.
   static uint32_t registerSizeFromArch(uint32_t arch) noexcept {
     return is32Bit(arch) ? 4u : 8u;
@@ -596,6 +606,7 @@ public:
     kIdX64 = Environment::kArchX64,
     kIdA32 = Environment::kArchARM,
     kIdA64 = Environment::kArchAArch64,
+    kIdLA64 = Environment::kArchLOONGARCH64,
     kIdHost = Environment::kArchHost
   };
 

@@ -65,6 +65,10 @@ namespace x86 { void detectCpu(CpuInfo& cpu) noexcept; }
 namespace arm { void detectCpu(CpuInfo& cpu) noexcept; }
 #endif
 
+#if !defined(ASMJIT_NO_LOONG) && ASMJIT_ARCH_LOONGARCH
+namespace loong {void detectCpu(CpuInfo& cpu) noexcept; }
+#endif
+
 // ============================================================================
 // [asmjit::CpuInfo - Detect - Static Initializer]
 // ============================================================================
@@ -84,6 +88,10 @@ const CpuInfo& CpuInfo::host() noexcept {
 
 #if defined(ASMJIT_BUILD_ARM) && ASMJIT_ARCH_ARM
     arm::detectCpu(cpuInfoLocal);
+#endif
+
+#if !defined(ASMJIT_NO_LOONG) && ASMJIT_ARCH_LOONGARCH
+    loong::detectCpu(cpuInfoLocal);
 #endif
 
     cpuInfoLocal._hwThreadCount = detectHWThreadCount();

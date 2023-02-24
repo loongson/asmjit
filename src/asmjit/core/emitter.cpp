@@ -37,6 +37,11 @@
   #include "../arm/a64instdb.h"
 #endif // ASMJIT_BUILD_ARM
 
+#if !defined(ASMJIT_NO_LOONG)
+  #include "../loong/la64emithelper_p.h"
+  #include "../loong/la64instdb.h"
+#endif //!ASMJIT_NO_LOONG
+
 ASMJIT_BEGIN_NAMESPACE
 
 // ============================================================================
@@ -269,6 +274,13 @@ ASMJIT_FAVOR_SIZE Error BaseEmitter::emitProlog(const FuncFrame& frame) {
   }
 #endif
 
+#if !defined(ASMJIT_NO_LOONG)
+  if (environment().isFamilyLOONGARCH()){
+    la64::EmitHelper emitHelper(this);
+    return emitHelper.emitProlog(frame);
+  }
+#endif
+
   return DebugUtils::errored(kErrorInvalidArch);
 }
 
@@ -290,6 +302,13 @@ ASMJIT_FAVOR_SIZE Error BaseEmitter::emitEpilog(const FuncFrame& frame) {
   }
 #endif
 
+#if !defined(ASMJIT_NO_LOONG)
+  if (environment().isFamilyLOONGARCH()){
+    la64::EmitHelper emitHelper(this);
+    return emitHelper.emitEpilog(frame);
+  }
+#endif
+
   return DebugUtils::errored(kErrorInvalidArch);
 }
 
@@ -307,6 +326,13 @@ ASMJIT_FAVOR_SIZE Error BaseEmitter::emitArgsAssignment(const FuncFrame& frame, 
 #ifdef ASMJIT_BUILD_ARM
   if (environment().isArchAArch64()) {
     a64::EmitHelper emitHelper(this);
+    return emitHelper.emitArgsAssignment(frame, args);
+  }
+#endif
+
+#if !defined(ASMJIT_NO_LOONG)
+  if (environment().isFamilyLOONGARCH()){
+    la64::EmitHelper emitHelper(this);
     return emitHelper.emitArgsAssignment(frame, args);
   }
 #endif

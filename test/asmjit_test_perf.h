@@ -43,6 +43,7 @@ static void bench(asmjit::CodeHolder& code, uint32_t arch, uint32_t numIteration
 
   const char* archName =
     arch == asmjit::Environment::kArchX86 ? "X86" :
+    arch == asmjit::Environment::kArchLOONGARCH64 ? "LA64" :
     arch == asmjit::Environment::kArchX64 ? "X64" : "???";
 
   const char* emitterName =

@@ -68,6 +68,8 @@ namespace asmjit {
 //! Disables X86/X64 backends.
 #define ASMJIT_NO_X86
 
+#define ASMJIT_NO_LOONG
+
 //! Disables non-host backends entirely (useful for JIT compilers to minimize the library size).
 #define ASMJIT_NO_FOREIGN
 
@@ -219,7 +221,15 @@ namespace asmjit {
   #define ASMJIT_ARCH_MIPS 0
 #endif
 
-#define ASMJIT_ARCH_BITS (ASMJIT_ARCH_X86 | ASMJIT_ARCH_ARM | ASMJIT_ARCH_MIPS)
+#if defined(__loongarch64__) || defined(__loongarch64)
+  #define ASMJIT_ARCH_LOONGARCH 64
+#elif defined(_LOONGARCH_ARCH_LOONGARCH32) || defined(__loongarch__)
+  #define ASMJIT_ARCH_LOONGARCH 32
+#else
+  #define ASMJIT_ARCH_LOONGARCH 0
+#endif
+
+#define ASMJIT_ARCH_BITS (ASMJIT_ARCH_X86 | ASMJIT_ARCH_ARM | ASMJIT_ARCH_MIPS | ASMJIT_ARCH_LOONGARCH)
 #if ASMJIT_ARCH_BITS == 0
   #undef ASMJIT_ARCH_BITS
   #if defined (__LP64__) || defined(_LP64)
@@ -246,6 +256,10 @@ namespace asmjit {
 #if defined(ASMJIT_NO_FOREIGN)
   #if !ASMJIT_ARCH_X86 && !defined(ASMJIT_NO_X86)
     #define ASMJIT_NO_X86
+  #endif
+
+  #if !ASMJIT_ARCH_LOONGARCH && !defined(ASMJIT_NO_LOONG)
+    #define ASMJIT_NO_LOONG
   #endif
 #endif
 

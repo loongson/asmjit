@@ -103,6 +103,13 @@ public:
         return kErrorOk;
       }
 
+      case Environment::kArchLOONGARCH64: {
+        _availableRegs[BaseReg::kGroupGp] = 0xFFFFFFFFu & ~Support::bitMask(3u);
+        _availableRegs[BaseReg::kGroupVec] = 0xFFFFFFFFu;
+        _availableRegs[BaseReg::kGroupOther0] = 0;
+        _availableRegs[BaseReg::kGroupOther1] = 0;
+        return kErrorOk;
+      }
       default:
         return DebugUtils::errored(kErrorInvalidArch);
     }

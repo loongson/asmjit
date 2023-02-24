@@ -24,6 +24,7 @@
 #ifndef ASMJIT_CORE_OPERAND_H_INCLUDED
 #define ASMJIT_CORE_OPERAND_H_INCLUDED
 
+#include "../core/loongarchcommons.h"
 #include "../core/archcommons.h"
 #include "../core/support.h"
 
@@ -674,9 +675,9 @@ public:
     kTypeGp8Hi = 3,
     //! 16-bit general purpose register (X86).
     kTypeGp16 = 4,
-    //! 32-bit general purpose register (X86|ARM).
+    //! 32-bit general purpose register (X86|ARM|LA).
     kTypeGp32 = 5,
-    //! 64-bit general purpose register (X86|ARM).
+    //! 64-bit general purpose register (X86|ARM|LA).
     kTypeGp64 = 6,
     //! 8-bit view of a vector register (ARM).
     kTypeVec8 = 7,
@@ -686,9 +687,9 @@ public:
     kTypeVec32 = 9,
     //! 64-bit view of a vector register (ARM).
     kTypeVec64 = 10,
-    //! 128-bit view of a vector register (X86|ARM).
+    //! 128-bit view of a vector register (X86|ARM|LA).
     kTypeVec128 = 11,
-    //! 256-bit view of a vector register (X86).
+    //! 256-bit view of a vector register (X86|LA).
     kTypeVec256 = 12,
     //! 512-bit view of a vector register (X86).
     kTypeVec512 = 13,
@@ -1302,6 +1303,12 @@ public:
     : Operand(other) {}
 
   //! Creates a new immediate value from ARM/AArch64 specific `shift`.
+  inline constexpr Imm(const loong::loongShift& shift) noexcept
+    : Operand(Globals::Init, kOpImm | (shift.op() << kSignaturePredicateShift),
+              0,
+              Support::unpackU32At0(shift.value()),
+              Support::unpackU32At1(shift.value())) {}
+
   inline constexpr Imm(const arm::Shift& shift) noexcept
     : Operand(Globals::Init, kOpImm | (shift.op() << kSignaturePredicateShift),
               0,

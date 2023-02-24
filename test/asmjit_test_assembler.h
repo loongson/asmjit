@@ -73,7 +73,6 @@ public:
       prepare();
       return false;
     }
-
     asmjit::String encodedOpcode;
     asmjit::Section* text = code.textSection();
 

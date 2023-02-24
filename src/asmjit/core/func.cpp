@@ -36,6 +36,10 @@
   #include "../arm/armfunc_p.h"
 #endif
 
+#if !defined(ASMJIT_NO_LOONG)
+  #include "../loong/loongfunc_p.h"
+#endif
+
 ASMJIT_BEGIN_NAMESPACE
 
 // ============================================================================
@@ -53,6 +57,11 @@ ASMJIT_FAVOR_SIZE Error CallConv::init(uint32_t ccId, const Environment& environ
 #ifdef ASMJIT_BUILD_ARM
   if (environment.isFamilyARM())
     return arm::FuncInternal::initCallConv(*this, ccId, environment);
+#endif
+
+#if !defined(ASMJIT_NO_LOONG)
+  if (environment.isFamilyLOONGARCH())
+    return loong::FuncInternal::initCallConv(*this, ccId, environment);
 #endif
 
   return DebugUtils::errored(kErrorInvalidArgument);
@@ -95,6 +104,11 @@ ASMJIT_FAVOR_SIZE Error FuncDetail::init(const FuncSignature& signature, const E
 #ifdef ASMJIT_BUILD_ARM
   if (environment.isFamilyARM())
     return arm::FuncInternal::initFuncDetail(*this, signature, registerSize);
+#endif
+
+#if !defined(ASMJIT_NO_LOONG)
+  if (environment.isFamilyLOONGARCH())
+    return loong::FuncInternal::initFuncDetail(*this, signature, registerSize);
 #endif
 
   // We should never bubble here as if `cc.init()` succeeded then there has to

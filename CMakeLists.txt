@@ -57,6 +57,10 @@ if (NOT DEFINED ASMJIT_NO_X86)
   set(ASMJIT_NO_X86 FALSE)
 endif()
 
+if (NOT DEFINED ASMJIT_NO_LOONG)
+  set(ASMJIT_NO_LOONG FALSE)
+endif()
+
 if (NOT DEFINED ASMJIT_NO_FOREIGN)
   set(ASMJIT_NO_FOREIGN FALSE)
 endif()
@@ -80,6 +84,7 @@ set(ASMJIT_EMBED           "${ASMJIT_EMBED}"           CACHE BOOL "Embed 'asmjit
 set(ASMJIT_STATIC          "${ASMJIT_STATIC}"          CACHE BOOL "Build 'asmjit' library as static")
 set(ASMJIT_SANITIZE        "${ASMJIT_SANITIZE}"        CACHE STRING "Build with sanitizers: 'address', 'undefined', etc...")
 set(ASMJIT_NO_X86          "${ASMJIT_NO_X86}"          CACHE BOOL "Disable X86/X64 backend")
+set(ASMJIT_NO_LOONG        "${ASMJIT_NO_LOONG}"        CACHE BOOL "Disable LOONGARCH64 backend")
 set(ASMJIT_NO_FOREIGN      "${ASMJIT_NO_FOREIGN}"      CACHE BOOL "Disable all foreign architectures (builds only host backend)")
 set(ASMJIT_NO_NATVIS       "${ASMJIT_NO_NATVIS}"       CACHE BOOL "Disable natvis support (embedding asmjit.natvis in PDB)")
 set(ASMJIT_NO_CUSTOM_FLAGS "${ASMJIT_NO_CUSTOM_FLAGS}" CACHE BOOL "Disable extra compilation flags added by AsmJit to its targets")
@@ -267,6 +272,7 @@ endif()
 foreach(build_option ASMJIT_STATIC
                      # AsmJit backends selection.
                      ASMJIT_NO_X86
+                     ASMJIT_NO_LOONG
                      ASMJIT_NO_FOREIGN
                      # AsmJit features selection.
                      ASMJIT_NO_DEPRECATED
@@ -308,6 +314,7 @@ set(ASMJIT_SRC_LIST
   asmjit/core/archtraits.cpp
   asmjit/core/archtraits.h
   asmjit/core/archcommons.h
+  asmjit/core/loongarchcommons.h
   asmjit/core/assembler.cpp
   asmjit/core/assembler.h
   asmjit/core/builder.cpp
@@ -417,6 +424,36 @@ set(ASMJIT_SRC_LIST
   asmjit/x86/x86operand.h
   asmjit/x86/x86rapass.cpp
   asmjit/x86/x86rapass_p.h
+
+  asmjit/loong.h
+  asmjit/loong/loongarchtraits_p.h
+  asmjit/loong/loongfeatures.cpp
+  asmjit/loong/loongfeatures.h
+  asmjit/loong/loongformatter.cpp
+  asmjit/loong/loongformatter_p.h
+  asmjit/loong/loongfunc.cpp
+  asmjit/loong/loongfunc_p.h
+  asmjit/loong/loongglobals.h
+  asmjit/loong/loongoperand.h
+  asmjit/loong/la64assembler.cpp
+  asmjit/loong/la64assembler.h
+  asmjit/loong/la64builder.cpp
+  asmjit/loong/la64builder.h
+  asmjit/loong/la64compiler.cpp
+  asmjit/loong/la64compiler.h
+  asmjit/loong/la64emithelper.cpp
+  asmjit/loong/la64emithelper_p.h
+  asmjit/loong/la64emitter.h
+  asmjit/loong/la64globals.h
+  asmjit/loong/la64instapi.cpp
+  asmjit/loong/la64instapi_p.h
+  asmjit/loong/la64instdb.cpp
+  asmjit/loong/la64instdb.h
+  asmjit/loong/la64operand.cpp
+  asmjit/loong/la64operand.h
+  asmjit/loong/la64rapass.cpp
+  asmjit/loong/la64rapass_p.h
+  asmjit/loong/la64utils.h
 )
 
 if (MSVC AND NOT ASMJIT_NO_NATVIS)
@@ -519,6 +556,7 @@ if (NOT ASMJIT_EMBED)
                       SOURCES    test/asmjit_test_assembler.cpp
                                  test/asmjit_test_assembler_x64.cpp
                                  test/asmjit_test_assembler_x86.cpp
+                                 test/asmjit_test_assembler_la64.cpp
                                  test/asmjit_test_assembler.h
                       LIBRARIES  asmjit::asmjit
                       CFLAGS     ${ASMJIT_PRIVATE_CFLAGS}
