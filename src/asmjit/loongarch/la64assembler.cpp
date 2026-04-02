@@ -1291,29 +1291,29 @@ Error Assembler::_emit(InstId instId, const Operand_& o0, const Operand_& o1,
           if (!Support::isInt12(offset32)) goto InvalidDisplacement;
 
           uint32_t offsetLen = opData.offsetLen;
-          uint32_t offset = 0;
+          uint32_t offset_32 = 0;
           switch (offsetLen) {
             case 9:
               if ((offset32 & 0x7) != 0) goto InvalidDisplacement;
-              offset = (offset32 >> 3) & 0x1FF;
+              offset_32 = (offset32 >> 3) & 0x1FF;
               break;
             case 10:
               if ((offset32 & 0x3) != 0) goto InvalidDisplacement;
-              offset = (offset32 >> 2) & 0x3FF;
+              offset_32 = (offset32 >> 2) & 0x3FF;
               break;
             case 11:
               if ((offset32 & 0x1) != 0) goto InvalidDisplacement;
-              offset = (offset32 >> 1) & 0x7FF;
+              offset_32 = (offset32 >> 1) & 0x7FF;
               break;
             case 12:
-              offset = offset32 & 0xFFF;
+              offset_32 = offset32 & 0xFFF;
               break;
             default:
               goto InvalidDisplacement;
           }
 
           opcode.reset(opData.opcode());
-          opcode.addImm(offset, 10);
+          opcode.addImm(offset_32, 10);
           opcode.addReg(o0, 0);
           goto EmitOp_MemBase_Rj5;
         } else {
@@ -1492,17 +1492,17 @@ Error Assembler::_emit(InstId instId, const Operand_& o0, const Operand_& o1,
         }
 
         if (opData.uniform == 1 &&
-            (((immValue + 0x800) & 0xFFFFFFFFFFFFF007) != 0)) {
+            (((static_cast<uint64_t>(immValue) + 0x800ULL) & 0xFFFFFFFFFFFFF007ULL) != 0)) {
           goto InvalidImmediate;
         }
 
         if (opData.uniform == 2 &&
-            (((immValue + 0x800) & 0xFFFFFFFFFFFFF003) != 0)) {
+            (((static_cast<uint64_t>(immValue) + 0x800ULL) & 0xFFFFFFFFFFFFF003ULL) != 0)) {
           goto InvalidImmediate;
         }
 
         if (opData.uniform == 3 &&
-            (((immValue + 0x800) & 0xFFFFFFFFFFFFF001) != 0)) {
+            (((static_cast<uint64_t>(immValue) + 0x800ULL) & 0xFFFFFFFFFFFFF001ULL) != 0)) {
           goto InvalidImmediate;
         }
 
@@ -1612,17 +1612,17 @@ Error Assembler::_emit(InstId instId, const Operand_& o0, const Operand_& o1,
         }
 
         if (opData.uniform == 1 &&
-            (((immValue + 0x800) & 0xFFFFFFFFFFFFF007) != 0)) {
+            (((static_cast<uint64_t>(immValue) + 0x800ULL) & 0xFFFFFFFFFFFFF007ULL) != 0)) {
           goto InvalidImmediate;
         }
 
         if (opData.uniform == 2 &&
-            (((immValue + 0x800) & 0xFFFFFFFFFFFFF003) != 0)) {
+            (((static_cast<uint64_t>(immValue) + 0x800ULL) & 0xFFFFFFFFFFFFF003ULL) != 0)) {
           goto InvalidImmediate;
         }
 
         if (opData.uniform == 3 &&
-            (((immValue + 0x800) & 0xFFFFFFFFFFFFF001) != 0)) {
+            (((static_cast<uint64_t>(immValue) + 0x800ULL) & 0xFFFFFFFFFFFFF001ULL) != 0)) {
           goto InvalidImmediate;
         }
 
