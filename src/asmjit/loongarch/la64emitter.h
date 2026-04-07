@@ -105,6 +105,8 @@ struct EmitterExplicitT {
   ASMJIT_INST_1x(b, B, Imm)
   ASMJIT_INST_1x(bl, Bl, Imm)
   ASMJIT_INST_1x(bl, Bl, Label)
+  ASMJIT_INST_3x(slt, Slt, Gp, Gp, Gp)
+  ASMJIT_INST_3x(sltu, Sltu, Gp, Gp, Gp)
   ASMJIT_INST_3x(slti, Slti, Gp, Gp, Imm)
   ASMJIT_INST_3x(sltui, Sltui, Gp, Gp, Imm)
   ASMJIT_INST_3x(addi_w, Addi_w, Gp, Gp, Imm)
