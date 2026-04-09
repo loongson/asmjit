@@ -968,7 +968,7 @@ extern const BaseLRRI baseLRRI[18];
 extern const BaseLRRII baseLRRII[4];
 extern const BaseLRRIL baseLRRIL[1];
 extern const BaseLRRL baseLRRL[2];
-extern const BaseLRRR baseLRRR[60];
+extern const BaseLRRR baseLRRR[62];
 extern const BaseLRRRI baseLRRRI[5];
 extern const BaseLRRRT baseLRRRT[36];
 extern const BaseLRV baseLRV[3];

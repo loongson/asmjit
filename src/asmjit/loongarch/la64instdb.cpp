@@ -338,6 +338,8 @@ const InstInfo _instInfoTable[] = {
   INST(Sll_w            , BaseLRRR           , (0b00000000000101110, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 44 ), // #301
   INST(Slli_d           , BaseLRRI           , (0b0000000001000001, kWX, 0, kWX, 5, 10, 2)                                           , 0         , 0                         , 9  ), // #302
   INST(Slli_w           , BaseLRRI           , (0b00000000010000001, kWX, 0, kWX, 5, 10, 1)                                          , 0         , 0                         , 10 ), // #303
+  INST(Slt              , BaseLRRR           , (0b00000000000100100, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 0  ), // #new
+  INST(Sltu             , BaseLRRR           , (0b00000000000100101, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 0  ), // #new
   INST(Slti             , BaseLRRI           , (0b0000001000, kX, 0, kSP, 5, 10, 0)                                                  , 0         , 0                         , 11 ), // #304
   INST(Sltui            , BaseLRRI           , (0b0000001001, kX, 0, kSP, 5, 10, 0)                                                  , 0         , 0                         , 12 ), // #305
   INST(Sra_d            , BaseLRRR           , (0b00000000000110011, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 45 ), // #306
@@ -1980,7 +1982,7 @@ const BaseLRRL baseLRRL[2] = {
   { 0b00000000000000010, kWX, 5, kWX, 10 }  // asrtle_d
 };
 
-const BaseLRRR baseLRRR[60] = {
+const BaseLRRR baseLRRR[62] = {
   { 0b00000000000100001, kWX, 0, kWX, 5, kWX, 10, 0 }, // add_d
   { 0b00000000000100000, kWX, 0, kWX, 5, kWX, 10, 0 }, // add_w
   { 0b00000000000101001, kWX, 0, kWX, 5, kWX, 10, 0 }, // and_
@@ -2024,6 +2026,8 @@ const BaseLRRR baseLRRR[60] = {
   { 0b00000000000101100, kWX, 0, kWX, 5, kWX, 10, 0 }, // orn
   { 0b00000000000110111, kWX, 0, kWX, 5, kWX, 10, 0 }, // rotr_d
   { 0b00000000000110110, kWX, 0, kWX, 5, kWX, 10, 0 }, // rotr_w
+  { 0b00000000000100100, kWX, 0, kWX, 5, kWX, 10, 0 }, // slt
+  { 0b00000000000100101, kWX, 0, kWX, 5, kWX, 10, 0 }, // sltu
   { 0b00000000000110001, kWX, 0, kWX, 5, kWX, 10, 0 }, // sll_d
   { 0b00000000000101110, kWX, 0, kWX, 5, kWX, 10, 0 }, // sll_w
   { 0b00000000000110011, kWX, 0, kWX, 5, kWX, 10, 0 }, // sra_d
