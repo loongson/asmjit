@@ -329,8 +329,6 @@ struct Inst {
     kIdSll_w,                            //!< Instruction 'sll_w'.
     kIdSlli_d,                           //!< Instruction 'slli_d'.
     kIdSlli_w,                           //!< Instruction 'slli_w'.
-    kIdSlt,                             //!< Instruction 'slt'.
-    kIdSltu,                            //!< Instruction 'sltu'.
     kIdSlti,                             //!< Instruction 'slti'.
     kIdSltui,                            //!< Instruction 'sltui'.
     kIdSra_d,                            //!< Instruction 'sra_d'.
@@ -361,6 +359,8 @@ struct Inst {
     kIdStx_w,                            //!< Instruction 'stx_w'.
     kIdSub_d,                            //!< Instruction 'sub_d'.
     kIdSub_w,                            //!< Instruction 'sub_w'.
+    kIdSlt,                              //!< Instruction 'slt'.
+    kIdSltu,                             //!< Instruction 'sltu'.
     kIdSyscall,                          //!< Instruction 'syscall'.
     kIdTlbclr,                           //!< Instruction 'tlbclr'.
     kIdTlbfill,                          //!< Instruction 'tlbfill'.
