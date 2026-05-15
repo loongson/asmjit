@@ -2633,7 +2633,13 @@ EmitOp_Rel: {
     LabelEntry* label = _code->labelEntry(labelId);
     if (ASMJIT_UNLIKELY(!label)) goto InvalidLabel;
 
+    bool isBranch =
+      offsetFormat.type() == OffsetType::kTypeLa64_B26 ||
+      offsetFormat.type() == OffsetType::kTypeLa64_B16;
+
     if (label->isBoundTo(_section)) {
+      if (isBranch)
+        labelOffset = 0;
       // Label bound to the current section.
       offsetValue =
           label->offset() - uint64_t(offset()) + uint64_t(labelOffset);
@@ -2693,6 +2699,25 @@ EmitOp_DispImm: {
   switch (offsetFormat.type()) {
     case OffsetType::kSignedOffset: {
       opcode.addImm(dispImm32, offsetFormat.immBitShift());
+      goto EmitOp;
+    }
+    case OffsetType::kTypeLa64_B26: {
+      ASMJIT_ASSERT(offsetFormat.valueSize() == 4);
+      ASMJIT_ASSERT(offsetFormat.immBitCount() == 26);
+
+      uint32_t imm26 = dispImm32 & 0x3FFFFFFU;
+
+      uint32_t immHi_10 = imm26 >> 16;
+      uint32_t immLo_16 = imm26 & 0xFFFFU;
+
+      opcode.addImm(immLo_16, 10);
+      opcode.addImm(immHi_10, 0);
+
+      goto EmitOp;
+    }
+    case OffsetType::kTypeLa64_B16: {
+      uint32_t imm16 = dispImm32 & 0xFFFFU;
+      opcode.addImm(imm16, 10);
       goto EmitOp;
     }
 

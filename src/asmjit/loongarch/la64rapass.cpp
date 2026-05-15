@@ -103,16 +103,16 @@ public:
 
 // TODO: [LA] This is just a workaround...
 static InstControlFlow getControlFlowType(InstId instId) noexcept {
-  switch (BaseInst::extractRealId(instId)) {
+  InstId realId = BaseInst::extractRealId(instId);
+  
+  switch (realId) {
     case Inst::kIdB:
-    case Inst::kIdBl:
       if (BaseInst::extractLACondCode(instId) == CondCode::kAL)
         return InstControlFlow::kJump;
       else
         return InstControlFlow::kBranch;
-    /* case Inst::kIdBl: */   //FIXME
-    /* case Inst::kIdBlr: */
-    /*   return InstControlFlow::kCall; */
+    case Inst::kIdBl:
+      return InstControlFlow::kCall;
     case Inst::kIdBeq:
     case Inst::kIdBne:
     case Inst::kIdBlt:
@@ -121,7 +121,7 @@ static InstControlFlow getControlFlowType(InstId instId) noexcept {
     case Inst::kIdBgeu:
       return InstControlFlow::kBranch;
     case Inst::kIdJirl:
-      return InstControlFlow::kReturn;
+      return InstControlFlow::kJump;
     default:
       return InstControlFlow::kRegular;
   }
