@@ -338,8 +338,6 @@ const InstInfo _instInfoTable[] = {
   INST(Sll_w            , BaseLRRR           , (0b00000000000101110, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 44 ), // #301
   INST(Slli_d           , BaseLRRI           , (0b0000000001000001, kWX, 0, kWX, 5, 10, 2)                                           , 0         , 0                         , 9  ), // #302
   INST(Slli_w           , BaseLRRI           , (0b00000000010000001, kWX, 0, kWX, 5, 10, 1)                                          , 0         , 0                         , 10 ), // #303
-  INST(Slt              , BaseLRRR           , (0b00000000000100100, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 0  ), // #new
-  INST(Sltu             , BaseLRRR           , (0b00000000000100101, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 0  ), // #new
   INST(Slti             , BaseLRRI           , (0b0000001000, kX, 0, kSP, 5, 10, 0)                                                  , 0         , 0                         , 11 ), // #304
   INST(Sltui            , BaseLRRI           , (0b0000001001, kX, 0, kSP, 5, 10, 0)                                                  , 0         , 0                         , 12 ), // #305
   INST(Sra_d            , BaseLRRR           , (0b00000000000110011, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 45 ), // #306
@@ -370,6 +368,8 @@ const InstInfo _instInfoTable[] = {
   INST(Stx_w            , BaseLdSt           , (0b00111000000110000, 15)                                                             , 0         , 0                         , 29 ), // #331
   INST(Sub_d            , BaseLRRR           , (0b00000000000100011, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 57 ), // #332
   INST(Sub_w            , BaseLRRR           , (0b00000000000100010, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 58 ), // #333
+  INST(Slt              , BaseLRRR           , (0b00000000000100100, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 59 ), // #new
+  INST(Sltu             , BaseLRRR           , (0b00000000000100101, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 60 ), // #new
   INST(Syscall          , BaseLIC            , (0b00000000001010110, 0)                                                              , 0         , 0                         , 2  ), // #334
   INST(Tlbclr           , BaseOp             , (0b00000110010010000010000000000000)                                                  , 0         , 0                         , 1  ), // #335
   INST(Tlbfill          , BaseOp             , (0b00000110010010000011010000000000)                                                  , 0         , 0                         , 2  ), // #336
@@ -377,7 +377,7 @@ const InstInfo _instInfoTable[] = {
   INST(Tlbrd            , BaseOp             , (0b00000110010010000010110000000000)                                                  , 0         , 0                         , 4  ), // #338
   INST(Tlbsrch          , BaseOp             , (0b00000110010010000010100000000000)                                                  , 0         , 0                         , 5  ), // #339
   INST(Tlbwr            , BaseOp             , (0b00000110010010000011000000000000)                                                  , 0         , 0                         , 6  ), // #340
-  INST(Xor_             , BaseLRRR           , (0b00000000000101011, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 59 ), // #341
+  INST(Xor_             , BaseLRRR           , (0b00000000000101011, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 60 ), // #341
   INST(Xori             , BaseLRRI           , (0b0000001111, kX, 0, kSP, 5, 10, 5)                                                  , 0         , 0                         , 17 ), // #342
   INST(Vabsd_b          , LsxVVV             , (0b01110000011000000, 0, 5, 10, 0)                                                    , 0         , 0                         , 0  ), // #343
   INST(Vabsd_bu         , LsxVVV             , (0b01110000011000100, 0, 5, 10, 0)                                                    , 0         , 0                         , 1  ), // #344
@@ -2026,8 +2026,6 @@ const BaseLRRR baseLRRR[62] = {
   { 0b00000000000101100, kWX, 0, kWX, 5, kWX, 10, 0 }, // orn
   { 0b00000000000110111, kWX, 0, kWX, 5, kWX, 10, 0 }, // rotr_d
   { 0b00000000000110110, kWX, 0, kWX, 5, kWX, 10, 0 }, // rotr_w
-  { 0b00000000000100100, kWX, 0, kWX, 5, kWX, 10, 0 }, // slt
-  { 0b00000000000100101, kWX, 0, kWX, 5, kWX, 10, 0 }, // sltu
   { 0b00000000000110001, kWX, 0, kWX, 5, kWX, 10, 0 }, // sll_d
   { 0b00000000000101110, kWX, 0, kWX, 5, kWX, 10, 0 }, // sll_w
   { 0b00000000000110011, kWX, 0, kWX, 5, kWX, 10, 0 }, // sra_d
@@ -2044,6 +2042,8 @@ const BaseLRRR baseLRRR[62] = {
   { 0b00111000011111110, kWX, 0, kWX, 5, kWX, 10, 0 }, // stle_w
   { 0b00000000000100011, kWX, 0, kWX, 5, kWX, 10, 0 }, // sub_d
   { 0b00000000000100010, kWX, 0, kWX, 5, kWX, 10, 0 }, // sub_w
+  { 0b00000000000100100, kWX, 0, kWX, 5, kWX, 10, 0 }, // slt
+  { 0b00000000000100101, kWX, 0, kWX, 5, kWX, 10, 0 }, // sltu
   { 0b00000000000101011, kWX, 0, kWX, 5, kWX, 10, 0 }  // xor_
 };
 
