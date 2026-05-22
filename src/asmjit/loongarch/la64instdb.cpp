@@ -377,7 +377,7 @@ const InstInfo _instInfoTable[] = {
   INST(Tlbrd            , BaseOp             , (0b00000110010010000010110000000000)                                                  , 0         , 0                         , 4  ), // #338
   INST(Tlbsrch          , BaseOp             , (0b00000110010010000010100000000000)                                                  , 0         , 0                         , 5  ), // #339
   INST(Tlbwr            , BaseOp             , (0b00000110010010000011000000000000)                                                  , 0         , 0                         , 6  ), // #340
-  INST(Xor_             , BaseLRRR           , (0b00000000000101011, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 60 ), // #341
+  INST(Xor_             , BaseLRRR           , (0b00000000000101011, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 61 ), // #341
   INST(Xori             , BaseLRRI           , (0b0000001111, kX, 0, kSP, 5, 10, 5)                                                  , 0         , 0                         , 17 ), // #342
   INST(Vabsd_b          , LsxVVV             , (0b01110000011000000, 0, 5, 10, 0)                                                    , 0         , 0                         , 0  ), // #343
   INST(Vabsd_bu         , LsxVVV             , (0b01110000011000100, 0, 5, 10, 0)                                                    , 0         , 0                         , 1  ), // #344
