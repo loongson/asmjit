@@ -154,6 +154,10 @@ struct Inst {
     kIdFcmp_sult_d,                      //!< Instruction 'fcmp_sult_d'.
     kIdFcmp_sun_d,                       //!< Instruction 'fcmp_sun_d'.
     kIdFcmp_sune_s,                      //!< Instruction 'fcmp_sune_s'.
+    kIdFcmp_cune_s,                      //!< Instruction 'fcmp_cune_s'.
+    kIdFcmp_clt_s,                       //!< Instruction 'fcmp_clt_s'.
+    kIdFcmp_cle_s,                       //!< Instruction 'fcmp_cle_s'.
+    kIdFcmp_ceq_d,                       //!< Instruction 'fcmp_ceq_d'.
     kIdFcopysign_d,                      //!< Instruction 'fcopysign_d'.
     kIdFcopysign_s,                      //!< Instruction 'fcopysign_s'.
     kIdFcvt_d_s,                         //!< Instruction 'fcvt_d_s'.
