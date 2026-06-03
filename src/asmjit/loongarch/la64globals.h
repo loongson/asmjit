@@ -158,6 +158,8 @@ struct Inst {
     kIdFcmp_clt_s,                       //!< Instruction 'fcmp_clt_s'.
     kIdFcmp_cle_s,                       //!< Instruction 'fcmp_cle_s'.
     kIdFcmp_ceq_d,                       //!< Instruction 'fcmp_ceq_d'.
+    kIdFcmp_cne_s,                       //!< Instruction 'fcmp_cne_s'.
+    kIdFcmp_cun_s,                       //!< Instruction 'fcmp_cun_s'.
     kIdFcopysign_d,                      //!< Instruction 'fcopysign_d'.
     kIdFcopysign_s,                      //!< Instruction 'fcopysign_s'.
     kIdFcvt_d_s,                         //!< Instruction 'fcvt_d_s'.
