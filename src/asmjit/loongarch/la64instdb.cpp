@@ -85,8 +85,8 @@ const InstInfo _instInfoTable[] = {
   INST(Asrtgt_d         , BaseLRRL           , (0b00000000000000011, kWX, 5, kWX, 10)                                                , 0         , 0                         , 0  ), // #48
   INST(Asrtle_d         , BaseLRRL           , (0b00000000000000010, kWX, 5, kWX, 10)                                                , 0         , 0                         , 1  ), // #49
   INST(B                , BaseBranchRel      , (0b010100, OffsetType::kTypeLa64_B26)                                                 , 0         , 0                         , 0  ), // #50
-  INST(Bceqz            , BaseLII            , (0b010010, 5, 0, 3, 5, 16, 10, 0)                                                     , 0         , 0                         , 0  ), // #51
-  INST(Bcnez            , BaseLII            , (0b010010, 5, 0, 3, 5, 16, 10, 1)                                                     , 0         , 0                         , 1  ), // #52
+  INST(Bceqz            , BaseLII            , (0b010010, OffsetType::kTypeLa64_B21, 5, 0, 3, 5, 16, 10, 0)                          , 0         , 0                         , 0  ), // #51
+  INST(Bcnez            , BaseLII            , (0b010010, OffsetType::kTypeLa64_B21, 5, 0, 3, 5, 16, 10, 1)                          , 0         , 0                         , 1  ), // #52
   INST(Beq              , BaseBranchRel      , (0b010110, OffsetType::kTypeLa64_B16)                                                 , 0         , 0                         , 1  ), // #53
   INST(Bge              , BaseBranchRel      , (0b011001, OffsetType::kTypeLa64_B16)                                                 , 0         , 0                         , 2  ), // #54
   INST(Bgeu             , BaseBranchRel      , (0b011011, OffsetType::kTypeLa64_B16)                                                 , 0         , 0                         , 3  ), // #55
@@ -1890,8 +1890,8 @@ const BaseLIC baseLIC[3] = {
 };
 
 const BaseLII baseLII[2] = {
-  { 0b010010, 5, 0, 3, 5, 16, 10, 0 }, // bceqz
-  { 0b010010, 5, 0, 3, 5, 16, 10, 1 }  // bcnez
+  { 0b010010, OffsetType::kTypeLa64_B21, 5, 0, 3, 5, 16, 10, 0 }, // bceqz
+  { 0b010010, OffsetType::kTypeLa64_B21, 5, 0, 3, 5, 16, 10, 1 }  // bcnez
 };
 
 const BaseLIR baseLIR[1] = {

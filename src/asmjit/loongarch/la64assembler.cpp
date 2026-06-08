@@ -1144,6 +1144,24 @@ Error Assembler::_emit(InstId instId, const Operand_& o0, const Operand_& o1,
         opcode.addImm(bImm, opData.bImmOffset);
         opcode.addImm(cImm, opData.cImmOffset);
         goto EmitOp;
+      } else if (isign4 == ENC_OPS2(Imm, Label)) {
+          uint32_t bImm = o0.as<Imm>().valueAs<uint32_t>();
+
+          if (bImm >= uint64_t(1u << opData.bImmSize)) {
+            goto InvalidImmediate;
+          }
+
+          if (opData.uniform == 1) {
+            bImm ^= 0x8;
+          }
+
+          opcode.reset(opData.opcode());
+          opcode.addImm(bImm, opData.bImmOffset);
+          rmRel = &o1;
+
+          offsetFormat.resetToImmValue(OffsetType::kTypeLa64_B21, 4, 0, 21,
+                                     2);  // BCEQZ and BCNEZ.
+          goto EmitOp_Rel;
       }
 
       break;
@@ -2635,6 +2653,7 @@ EmitOp_Rel: {
 
     bool isBranch =
       offsetFormat.type() == OffsetType::kTypeLa64_B26 ||
+      offsetFormat.type() == OffsetType::kTypeLa64_B21 ||
       offsetFormat.type() == OffsetType::kTypeLa64_B16;
 
     if (label->isBoundTo(_section)) {
@@ -2716,8 +2735,25 @@ EmitOp_DispImm: {
       goto EmitOp;
     }
     case OffsetType::kTypeLa64_B16: {
+      ASMJIT_ASSERT(offsetFormat.valueSize() == 4);
+      ASMJIT_ASSERT(offsetFormat.immBitCount() == 16);
+      ASMJIT_ASSERT(offsetFormat.immBitShift() == 10);
+
       uint32_t imm16 = dispImm32 & 0xFFFFU;
       opcode.addImm(imm16, 10);
+      goto EmitOp;
+    }
+    case OffsetType::kTypeLa64_B21: {
+      ASMJIT_ASSERT(offsetFormat.valueSize() == 4);
+      ASMJIT_ASSERT(offsetFormat.immBitCount() == 21);
+      ASMJIT_ASSERT(offsetFormat.immBitShift() == 0);
+
+      uint32_t imm21 = dispImm32 & 0x1FFFFFU;
+      uint32_t immLo = imm21 & 0xFFFFU;
+      uint32_t immHi = imm21 >> 16;
+      opcode.addImm(immLo, 10);
+      opcode.addImm(immHi, 0);
+
       goto EmitOp;
     }
 

@@ -19,6 +19,8 @@
 #include "../core/zonetree.h"
 #include "../core/zonevector.h"
 
+#include "libarkbase/mem/arena_allocator.h"
+
 ASMJIT_BEGIN_NAMESPACE
 
 //! \addtogroup asmjit_core
@@ -365,9 +367,11 @@ enum class OffsetType : uint8_t {
   kTypeLa64_B26,
   //! Loongarch BEQ/BNE/...
   kTypeLa64_B16,
+  //! Loongarch BCEQZ/BCNEZ.
+  kTypeLa64_B21,
 
   //! Maximum value of `OffsetFormatType`.
-  kMaxValue = kTypeLa64_B16
+  kMaxValue = kTypeLa64_B21
 };
 
 //! Provides information about formatting offsets, absolute addresses, or their parts. Offset format is used by both
@@ -723,6 +727,8 @@ public:
   //! \name Members
   //! \{
 
+  ark::ArenaAllocator* _pandaAllocator{nullptr};
+
   //! Environment information.
   Environment _environment;
   //! CPU features of the target architecture.
@@ -769,11 +775,7 @@ public:
   //!
   //! An optional `temporary` argument can be used to initialize the first block of \ref Zone that the CodeHolder
   //! uses into a temporary memory provided by the user.
-  ASMJIT_API explicit CodeHolder(const Support::Temporary* temporary = nullptr) noexcept;
-
-  //! \overload
-  ASMJIT_INLINE_NODEBUG explicit CodeHolder(const Support::Temporary& temporary) noexcept
-    : CodeHolder(&temporary) {}
+  ASMJIT_API explicit CodeHolder(ark::ArenaAllocator* pandaAllocator = nullptr) noexcept;
 
   //! Destroys the CodeHolder and frees all resources it has allocated.
   ASMJIT_API ~CodeHolder() noexcept;
