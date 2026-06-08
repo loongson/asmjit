@@ -79,6 +79,14 @@ const InstInfo _instInfoTable[] = {
   INST(Amxor_db_d       , BaseLRRRT          , (0b00111000011011011, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 33 ), // #42
   INST(Amxor_db_w       , BaseLRRRT          , (0b00111000011011010, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 34 ), // #43
   INST(Amxor_w          , BaseLRRRT          , (0b00111000011001000, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 35 ), // #44
+  INST(Amcas_b          , BaseLRRRT          , (0b00111000010110000, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 36 ), // #new
+  INST(Amcas_h          , BaseLRRRT          , (0b00111000010110001, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 37 ), // #new
+  INST(Amcas_w          , BaseLRRRT          , (0b00111000010110010, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 38 ), // #new
+  INST(Amcas_d          , BaseLRRRT          , (0b00111000010110011, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 39 ), // #new
+  INST(Amcas_db_b       , BaseLRRRT          , (0b00111000010110100, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 40 ), // #new
+  INST(Amcas_db_h       , BaseLRRRT          , (0b00111000010110101, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 41 ), // #new
+  INST(Amcas_db_w       , BaseLRRRT          , (0b00111000010110110, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 42 ), // #new
+  INST(Amcas_db_d       , BaseLRRRT          , (0b00111000010110111, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 43 ), // #new
   INST(And_             , BaseLRRR           , (0b00000000000101001, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 2  ), // #45
   INST(Andi             , BaseLRRI           , (0b0000001101, kX, 0, kSP, 5, 10, 5)                                                  , 0         , 0                         , 2  ), // #46
   INST(Andn             , BaseLRRR           , (0b00000000000101101, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 3  ), // #47
@@ -169,6 +177,9 @@ const InstInfo _instInfoTable[] = {
   INST(Fcmp_ceq_d       , BaseLFIVV          , (0b00001100001000100, 0, 5, 10, 0)                                                    , 0         , 0                         , 25 ), // #new
   INST(Fcmp_cne_s       , BaseLFIVV          , (0b00001100000110000, 0, 5, 10, 0)                                                    , 0         , 0                         , 26 ), // #new
   INST(Fcmp_cun_s       , BaseLFIVV          , (0b00001100000101000, 0, 5, 10, 0)                                                    , 0         , 0                         , 27 ), // #new
+  INST(Fcmp_slt_d       , BaseLFIVV          , (0b00001100001000011, 0, 5, 10, 0)                                                    , 0         , 0                         , 28 ), // #new
+  INST(Fcmp_sle_d       , BaseLFIVV          , (0b00001100001000111, 0, 5, 10, 0)                                                    , 0         , 0                         , 29 ), // #new
+  INST(Fcmp_cult_d      , BaseLFIVV          , (0b00001100001001010, 0, 5, 10, 0)                                                    , 0         , 0                         , 30 ), // #new
   INST(Fcopysign_d      , BaseLVVV           , (0b00000001000100110, 0, 5, 10, 0)                                                    , 0         , 0                         , 2  ), // #129
   INST(Fcopysign_s      , BaseLVVV           , (0b00000001000100101, 0, 5, 10, 0)                                                    , 0         , 0                         , 3  ), // #130
   INST(Fcvt_d_s         , BaseLVV            , (0b0000000100011001001001, 0, 5, 0)                                                   , 0         , 0                         , 4  ), // #131
@@ -191,6 +202,8 @@ const InstInfo _instInfoTable[] = {
   INST(Flogb_s          , BaseLVV            , (0b0000000100010100001001, 0, 5, 0)                                                   , 0         , 0                         , 11 ), // #148
   INST(Fmadd_d          , FpLVVVV            , (0b000010000010)                                                                      , 0         , 0                         , 0  ), // #149
   INST(Fmadd_s          , FpLVVVV            , (0b000010000001)                                                                      , 0         , 0                         , 1  ), // #150
+  INST(Fmsub_d          , FpLVVVV            , (0b000010000110)                                                                      , 0         , 0                         , 2  ), // #new
+  INST(Fmsub_s          , FpLVVVV            , (0b000010000101)                                                                      , 0         , 0                         , 3  ), // #new
   INST(Fmax_d           , BaseLVVV           , (0b00000001000010010, 0, 5, 10, 0)                                                    , 0         , 0                         , 6  ), // #151
   INST(Fmax_s           , BaseLVVV           , (0b00000001000010001, 0, 5, 10, 0)                                                    , 0         , 0                         , 7  ), // #152
   INST(Fmaxa_d          , BaseLVVV           , (0b00000001000011010, 0, 5, 10, 0)                                                    , 0         , 0                         , 8  ), // #153
@@ -1852,7 +1865,7 @@ const BaseBranchRel baseBranchRel[8] = {
   { 0b010111, OffsetType::kTypeLa64_B16 }  // bne
 };
 
-const BaseLFIVV baseLFIVV[28] = {
+const BaseLFIVV baseLFIVV[31] = {
   { 0b00001100000100000, 0, 5, 10, 0 }, // fcmp_caf_s
   { 0b00001100000100100, 0, 5, 10, 0 }, // fcmp_ceq_s
   { 0b00001100001000110, 0, 5, 10, 0 }, // fcmp_cle_d
@@ -1880,7 +1893,10 @@ const BaseLFIVV baseLFIVV[28] = {
   { 0b00001100000100110, 0, 5, 10, 0 }, // fcmp_cle_s
   { 0b00001100001000100, 0, 5, 10, 0 }, // fcmp_ceq_d
   { 0b00001100000110000, 0, 5, 10, 0 }, // fcmp_cne_s
-  { 0b00001100000101000, 0, 5, 10, 0 }  // fcmp_cun_s
+  { 0b00001100000101000, 0, 5, 10, 0 }, // fcmp_cun_s
+  { 0b00001100001000011, 0, 5, 10, 0 }, // fcmp_slt_d
+  { 0b00001100001000111, 0, 5, 10, 0 }, // fcmp_sle_d
+  { 0b00001100001001010, 0, 5, 10, 0 }  // fcmp_cult_d
 };
 
 const BaseLIC baseLIC[3] = {
@@ -2067,7 +2083,7 @@ const BaseLRRRI baseLRRRI[5] = {
   { 0b000000000000100, kWX, 0, kWX, 5, kWX, 10, 15, 1 }  // bytepick_w
 };
 
-const BaseLRRRT baseLRRRT[36] = {
+const BaseLRRRT baseLRRRT[44] = {
   { 0b00111000011000011, kWX, 0, kWX, 10, kWX, 5, 0 }, // amadd_d
   { 0b00111000011010101, kWX, 0, kWX, 10, kWX, 5, 0 }, // amadd_db_d
   { 0b00111000011010100, kWX, 0, kWX, 10, kWX, 5, 0 }, // amadd_db_w
@@ -2103,7 +2119,15 @@ const BaseLRRRT baseLRRRT[36] = {
   { 0b00111000011001001, kWX, 0, kWX, 10, kWX, 5, 0 }, // amxor_d
   { 0b00111000011011011, kWX, 0, kWX, 10, kWX, 5, 0 }, // amxor_db_d
   { 0b00111000011011010, kWX, 0, kWX, 10, kWX, 5, 0 }, // amxor_db_w
-  { 0b00111000011001000, kWX, 0, kWX, 10, kWX, 5, 0 }  // amxor_w
+  { 0b00111000011001000, kWX, 0, kWX, 10, kWX, 5, 0 }, // amxor_w
+  { 0b00111000010110000, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_b
+  { 0b00111000010110001, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_h
+  { 0b00111000010110010, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_w
+  { 0b00111000010110011, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_d
+  { 0b00111000010110100, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_db_b
+  { 0b00111000010110101, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_db_h
+  { 0b00111000010110110, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_db_w
+  { 0b00111000010110111, kWX, 0, kWX, 10, kWX, 5, 0 }  // amcas_db_d
 };
 
 const BaseLRV baseLRV[3] = {
@@ -2252,9 +2276,11 @@ const BaseOpImm baseOpImm[3] = {
   { 0b00000110010010001, 15, 0 }  // idle
 };
 
-const FpLVVVV fpLVVVV[2] = {
+const FpLVVVV fpLVVVV[4] = {
   { 0b000010000010 }, // fmadd_d
-  { 0b000010000001 }  // fmadd_s
+  { 0b000010000001 }, // fmadd_s
+  { 0b000010000110 }, // fmsub_d
+  { 0b000010000101 }  // fmsub_s
 };
 
 const JBTLRRI jBTLRRI[1] = {

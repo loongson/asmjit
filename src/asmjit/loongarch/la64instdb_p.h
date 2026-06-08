@@ -956,7 +956,7 @@ struct SimdTblTbx {
 // ${EncodingDataForward:Begin}
 // ------------------- Automatically generated, do not edit -------------------
 extern const BaseBranchRel baseBranchRel[8];
-extern const BaseLFIVV baseLFIVV[28];
+extern const BaseLFIVV baseLFIVV[31];
 extern const BaseLIC baseLIC[3];
 extern const BaseLII baseLII[2];
 extern const BaseLIR baseLIR[1];
@@ -970,7 +970,7 @@ extern const BaseLRRIL baseLRRIL[1];
 extern const BaseLRRL baseLRRL[2];
 extern const BaseLRRR baseLRRR[62];
 extern const BaseLRRRI baseLRRRI[5];
-extern const BaseLRRRT baseLRRRT[36];
+extern const BaseLRRRT baseLRRRT[44];
 extern const BaseLRV baseLRV[3];
 extern const BaseLVI baseLVI[1];
 extern const BaseLVR baseLVR[3];
@@ -980,7 +980,7 @@ extern const BaseLVVV baseLVVV[20];
 extern const BaseLdSt baseLdSt[30];
 extern const BaseOp baseOp[7];
 extern const BaseOpImm baseOpImm[3];
-extern const FpLVVVV fpLVVVV[2];
+extern const FpLVVVV fpLVVVV[4];
 extern const JBTLRRI jBTLRRI[1];
 extern const LCldst lCldst[1];
 extern const LFPldst lFPldst[8];
