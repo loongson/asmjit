@@ -192,6 +192,17 @@ bool CodeWriterUtils::encodeOffset32(uint32_t* dst, int64_t offset64, const Offs
       return true;
     }
 
+    case OffsetType::kTypeLa64_B21: {
+      // Sanity checks.
+      if (format.valueSize() != 4 || bitCount != 21 || bitShift != 0)
+        return false;
+      uint32_t immLo = value & Support::lsbMask<uint32_t>(16);
+      uint32_t immHi = (value >> 16) & Support::lsbMask<uint32_t>(5);
+
+      *dst = (immLo << 10) | immHi;
+      return true;
+    }
+
     default:
       return false;
   }

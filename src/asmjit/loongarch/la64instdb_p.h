@@ -366,6 +366,7 @@ struct BaseLVVV {
 
 struct BaseLII {
   M_OPCODE(opcode, 6)
+  OffsetType offsetType : 8;
   uint32_t aImmSize : 5;
   uint32_t aImmOffset : 5;
   uint32_t bImmSize : 3;

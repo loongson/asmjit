@@ -19,6 +19,7 @@
 #include "../core/zonetree.h"
 #include "../core/zonevector.h"
 
+
 ASMJIT_BEGIN_NAMESPACE
 
 //! \addtogroup asmjit_core
@@ -365,9 +366,11 @@ enum class OffsetType : uint8_t {
   kTypeLa64_B26,
   //! Loongarch BEQ/BNE/...
   kTypeLa64_B16,
+  //! Loongarch BCEQZ/BCNEZ.
+  kTypeLa64_B21,
 
   //! Maximum value of `OffsetFormatType`.
-  kMaxValue = kTypeLa64_B16
+  kMaxValue = kTypeLa64_B21
 };
 
 //! Provides information about formatting offsets, absolute addresses, or their parts. Offset format is used by both
@@ -722,6 +725,7 @@ public:
 
   //! \name Members
   //! \{
+
 
   //! Environment information.
   Environment _environment;
