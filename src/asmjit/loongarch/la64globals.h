@@ -70,6 +70,14 @@ struct Inst {
     kIdAmxor_db_d,                       //!< Instruction 'amxor_db_d'.
     kIdAmxor_db_w,                       //!< Instruction 'amxor_db_w'.
     kIdAmxor_w,                          //!< Instruction 'amxor_w'.
+    kIdAmcas_b,                          //!< Instruction 'amcas_b'.
+    kIdAmcas_h,                          //!< Instruction 'amcas_h'.
+    kIdAmcas_w,                          //!< Instruction 'amcas_w'.
+    kIdAmcas_d,                          //!< Instruction 'amcas_d'.
+    kIdAmcas_db_b,                       //!< Instruction 'amcas_db_b'.
+    kIdAmcas_db_h,                       //!< Instruction 'amcas_db_h'.
+    kIdAmcas_db_w,                       //!< Instruction 'amcas_db_w'.
+    kIdAmcas_db_d,                       //!< Instruction 'amcas_db_d'.
     kIdAnd_,                             //!< Instruction 'and_'.
     kIdAndi,                             //!< Instruction 'andi'.
     kIdAndn,                             //!< Instruction 'andn'.

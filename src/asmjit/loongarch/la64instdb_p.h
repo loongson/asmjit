@@ -970,7 +970,7 @@ extern const BaseLRRIL baseLRRIL[1];
 extern const BaseLRRL baseLRRL[2];
 extern const BaseLRRR baseLRRR[62];
 extern const BaseLRRRI baseLRRRI[5];
-extern const BaseLRRRT baseLRRRT[36];
+extern const BaseLRRRT baseLRRRT[44];
 extern const BaseLRV baseLRV[3];
 extern const BaseLVI baseLVI[1];
 extern const BaseLVR baseLVR[3];

@@ -79,6 +79,14 @@ const InstInfo _instInfoTable[] = {
   INST(Amxor_db_d       , BaseLRRRT          , (0b00111000011011011, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 33 ), // #42
   INST(Amxor_db_w       , BaseLRRRT          , (0b00111000011011010, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 34 ), // #43
   INST(Amxor_w          , BaseLRRRT          , (0b00111000011001000, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 35 ), // #44
+  INST(Amcas_b          , BaseLRRRT          , (0b00111000010110000, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 36 ), // #new
+  INST(Amcas_h          , BaseLRRRT          , (0b00111000010110001, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 37 ), // #new
+  INST(Amcas_w          , BaseLRRRT          , (0b00111000010110010, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 38 ), // #new
+  INST(Amcas_d          , BaseLRRRT          , (0b00111000010110011, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 39 ), // #new
+  INST(Amcas_db_b       , BaseLRRRT          , (0b00111000010110100, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 40 ), // #new
+  INST(Amcas_db_h       , BaseLRRRT          , (0b00111000010110101, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 41 ), // #new
+  INST(Amcas_db_w       , BaseLRRRT          , (0b00111000010110110, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 42 ), // #new
+  INST(Amcas_db_d       , BaseLRRRT          , (0b00111000010110111, kWX, 0, kWX, 10, kWX, 5, 0)                                     , 0         , 0                         , 43 ), // #new
   INST(And_             , BaseLRRR           , (0b00000000000101001, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 2  ), // #45
   INST(Andi             , BaseLRRI           , (0b0000001101, kX, 0, kSP, 5, 10, 5)                                                  , 0         , 0                         , 2  ), // #46
   INST(Andn             , BaseLRRR           , (0b00000000000101101, kWX, 0, kWX, 5, kWX, 10, 0)                                     , 0         , 0                         , 3  ), // #47
@@ -2075,7 +2083,7 @@ const BaseLRRRI baseLRRRI[5] = {
   { 0b000000000000100, kWX, 0, kWX, 5, kWX, 10, 15, 1 }  // bytepick_w
 };
 
-const BaseLRRRT baseLRRRT[36] = {
+const BaseLRRRT baseLRRRT[44] = {
   { 0b00111000011000011, kWX, 0, kWX, 10, kWX, 5, 0 }, // amadd_d
   { 0b00111000011010101, kWX, 0, kWX, 10, kWX, 5, 0 }, // amadd_db_d
   { 0b00111000011010100, kWX, 0, kWX, 10, kWX, 5, 0 }, // amadd_db_w
@@ -2111,7 +2119,15 @@ const BaseLRRRT baseLRRRT[36] = {
   { 0b00111000011001001, kWX, 0, kWX, 10, kWX, 5, 0 }, // amxor_d
   { 0b00111000011011011, kWX, 0, kWX, 10, kWX, 5, 0 }, // amxor_db_d
   { 0b00111000011011010, kWX, 0, kWX, 10, kWX, 5, 0 }, // amxor_db_w
-  { 0b00111000011001000, kWX, 0, kWX, 10, kWX, 5, 0 }  // amxor_w
+  { 0b00111000011001000, kWX, 0, kWX, 10, kWX, 5, 0 }, // amxor_w
+  { 0b00111000010110000, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_b
+  { 0b00111000010110001, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_h
+  { 0b00111000010110010, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_w
+  { 0b00111000010110011, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_d
+  { 0b00111000010110100, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_db_b
+  { 0b00111000010110101, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_db_h
+  { 0b00111000010110110, kWX, 0, kWX, 10, kWX, 5, 0 }, // amcas_db_w
+  { 0b00111000010110111, kWX, 0, kWX, 10, kWX, 5, 0 }  // amcas_db_d
 };
 
 const BaseLRV baseLRV[3] = {
