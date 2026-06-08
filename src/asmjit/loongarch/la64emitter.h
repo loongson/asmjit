@@ -88,6 +88,8 @@ struct EmitterExplicitT {
   ASMJIT_INST_3x(add_d, Add_d, Gp, Gp, Gp)
   ASMJIT_INST_4x(fmadd_s, Fmadd_s, Vec, Vec, Vec, Vec)
   ASMJIT_INST_4x(fmadd_d, Fmadd_d, Vec, Vec, Vec, Vec)
+  ASMJIT_INST_4x(fmsub_s, Fmsub_s, Vec, Vec, Vec, Vec)
+  ASMJIT_INST_4x(fmsub_d, Fmsub_d, Vec, Vec, Vec, Vec)
   ASMJIT_INST_3x(beq, Beq, Gp, Gp, Imm)
   ASMJIT_INST_3x(beq, Beq, Gp, Gp, Label)
   ASMJIT_INST_3x(bne, Bne, Gp, Gp, Imm)

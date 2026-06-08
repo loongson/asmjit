@@ -185,6 +185,8 @@ struct Inst {
     kIdFlogb_s,                          //!< Instruction 'flogb_s'.
     kIdFmadd_d,                          //!< Instruction 'fmadd_d'.
     kIdFmadd_s,                          //!< Instruction 'fmadd_s'.
+    kIdFmsub_d,                          //!< Instruction 'fmsub_d'.
+    kIdFmsub_s,                          //!< Instruction 'fmsub_s'.
     kIdFmax_d,                           //!< Instruction 'fmax_d'.
     kIdFmax_s,                           //!< Instruction 'fmax_s'.
     kIdFmaxa_d,                          //!< Instruction 'fmaxa_d'.

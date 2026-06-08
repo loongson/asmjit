@@ -980,7 +980,7 @@ extern const BaseLVVV baseLVVV[20];
 extern const BaseLdSt baseLdSt[30];
 extern const BaseOp baseOp[7];
 extern const BaseOpImm baseOpImm[3];
-extern const FpLVVVV fpLVVVV[2];
+extern const FpLVVVV fpLVVVV[4];
 extern const JBTLRRI jBTLRRI[1];
 extern const LCldst lCldst[1];
 extern const LFPldst lFPldst[8];

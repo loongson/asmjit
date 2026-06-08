@@ -194,6 +194,8 @@ const InstInfo _instInfoTable[] = {
   INST(Flogb_s          , BaseLVV            , (0b0000000100010100001001, 0, 5, 0)                                                   , 0         , 0                         , 11 ), // #148
   INST(Fmadd_d          , FpLVVVV            , (0b000010000010)                                                                      , 0         , 0                         , 0  ), // #149
   INST(Fmadd_s          , FpLVVVV            , (0b000010000001)                                                                      , 0         , 0                         , 1  ), // #150
+  INST(Fmsub_d          , FpLVVVV            , (0b000010000110)                                                                      , 0         , 0                         , 2  ), // #new
+  INST(Fmsub_s          , FpLVVVV            , (0b000010000101)                                                                      , 0         , 0                         , 3  ), // #new
   INST(Fmax_d           , BaseLVVV           , (0b00000001000010010, 0, 5, 10, 0)                                                    , 0         , 0                         , 6  ), // #151
   INST(Fmax_s           , BaseLVVV           , (0b00000001000010001, 0, 5, 10, 0)                                                    , 0         , 0                         , 7  ), // #152
   INST(Fmaxa_d          , BaseLVVV           , (0b00000001000011010, 0, 5, 10, 0)                                                    , 0         , 0                         , 8  ), // #153
@@ -2258,9 +2260,11 @@ const BaseOpImm baseOpImm[3] = {
   { 0b00000110010010001, 15, 0 }  // idle
 };
 
-const FpLVVVV fpLVVVV[2] = {
+const FpLVVVV fpLVVVV[4] = {
   { 0b000010000010 }, // fmadd_d
-  { 0b000010000001 }  // fmadd_s
+  { 0b000010000001 }, // fmadd_s
+  { 0b000010000110 }, // fmsub_d
+  { 0b000010000101 }  // fmsub_s
 };
 
 const JBTLRRI jBTLRRI[1] = {
