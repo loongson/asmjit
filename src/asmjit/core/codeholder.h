@@ -19,7 +19,6 @@
 #include "../core/zonetree.h"
 #include "../core/zonevector.h"
 
-#include "libarkbase/mem/arena_allocator.h"
 
 ASMJIT_BEGIN_NAMESPACE
 
@@ -727,7 +726,6 @@ public:
   //! \name Members
   //! \{
 
-  ark::ArenaAllocator* _pandaAllocator{nullptr};
 
   //! Environment information.
   Environment _environment;
@@ -775,7 +773,11 @@ public:
   //!
   //! An optional `temporary` argument can be used to initialize the first block of \ref Zone that the CodeHolder
   //! uses into a temporary memory provided by the user.
-  ASMJIT_API explicit CodeHolder(ark::ArenaAllocator* pandaAllocator = nullptr) noexcept;
+  ASMJIT_API explicit CodeHolder(const Support::Temporary* temporary = nullptr) noexcept;
+
+  //! \overload
+  ASMJIT_INLINE_NODEBUG explicit CodeHolder(const Support::Temporary& temporary) noexcept
+    : CodeHolder(&temporary) {}
 
   //! Destroys the CodeHolder and frees all resources it has allocated.
   ASMJIT_API ~CodeHolder() noexcept;
