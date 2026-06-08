@@ -956,7 +956,7 @@ struct SimdTblTbx {
 // ${EncodingDataForward:Begin}
 // ------------------- Automatically generated, do not edit -------------------
 extern const BaseBranchRel baseBranchRel[8];
-extern const BaseLFIVV baseLFIVV[28];
+extern const BaseLFIVV baseLFIVV[31];
 extern const BaseLIC baseLIC[3];
 extern const BaseLII baseLII[2];
 extern const BaseLIR baseLIR[1];
