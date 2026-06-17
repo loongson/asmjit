@@ -176,8 +176,8 @@ bool CodeWriterUtils::encodeOffset32(uint32_t* dst, int64_t offset64, const Offs
       // Sanity checks.
       if (format.valueSize() != 4 || bitCount != 26 || bitShift != 0)
         return false;
-      uint32_t immLo = value & Support::lsbMask<uint32_t>(10);;
-      uint32_t immHi = (value >> 10) & Support::lsbMask<uint32_t>(16);
+      uint32_t immLo = value & Support::lsbMask<uint32_t>(16);
+      uint32_t immHi = (value >> 16) & Support::lsbMask<uint32_t>(10);
 
       *dst = (immLo << 10) | (immHi << 0);
       return true;
