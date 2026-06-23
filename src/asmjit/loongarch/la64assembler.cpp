@@ -1229,7 +1229,7 @@ Error Assembler::_emit(InstId instId, const Operand_& o0, const Operand_& o1,
         const Mem& m = o1.as<Mem>();
         rmRel = &m;
 
-        if (!checkGpId(o0, kZR)) goto InvalidPhysId;
+        if (!checkValidRegs(o0)) goto InvalidPhysId;
 
         if (!laCheckMemBaseIndexRel(m)) goto InvalidAddress;
 
