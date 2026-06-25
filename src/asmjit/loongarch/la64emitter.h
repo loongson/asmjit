@@ -237,6 +237,7 @@ struct EmitterExplicitT {
   ASMJIT_INST_3x(fcmp_slt_d, Fcmp_slt_d, Imm, Vec, Vec)
   ASMJIT_INST_3x(fcmp_sle_d, Fcmp_sle_d, Imm, Vec, Vec)
   ASMJIT_INST_3x(fcmp_cult_d, Fcmp_cult_d, Imm, Vec, Vec)
+  ASMJIT_INST_3x(fcmp_cule_d, Fcmp_cule_d, Imm, Vec, Vec)
   ASMJIT_INST_4x(fsel, Fsel, Vec, Vec, Vec, Imm)
   ASMJIT_INST_2x(bceqz, Bceqz, Imm, Imm)
   ASMJIT_INST_2x(bcnez, Bcnez, Imm, Imm)
