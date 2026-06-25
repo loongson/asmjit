@@ -180,6 +180,7 @@ const InstInfo _instInfoTable[] = {
   INST(Fcmp_slt_d       , BaseLFIVV          , (0b00001100001000011, 0, 5, 10, 0)                                                    , 0         , 0                         , 28 ), // #new
   INST(Fcmp_sle_d       , BaseLFIVV          , (0b00001100001000111, 0, 5, 10, 0)                                                    , 0         , 0                         , 29 ), // #new
   INST(Fcmp_cult_d      , BaseLFIVV          , (0b00001100001001010, 0, 5, 10, 0)                                                    , 0         , 0                         , 30 ), // #new
+  INST(Fcmp_cule_d      , BaseLFIVV          , (0b00001100001001110, 0, 5, 10, 0)                                                    , 0         , 0                         , 31 ), // #new
   INST(Fcopysign_d      , BaseLVVV           , (0b00000001000100110, 0, 5, 10, 0)                                                    , 0         , 0                         , 2  ), // #129
   INST(Fcopysign_s      , BaseLVVV           , (0b00000001000100101, 0, 5, 10, 0)                                                    , 0         , 0                         , 3  ), // #130
   INST(Fcvt_d_s         , BaseLVV            , (0b0000000100011001001001, 0, 5, 0)                                                   , 0         , 0                         , 4  ), // #131
@@ -1865,7 +1866,7 @@ const BaseBranchRel baseBranchRel[8] = {
   { 0b010111, OffsetType::kTypeLa64_B16 }  // bne
 };
 
-const BaseLFIVV baseLFIVV[31] = {
+const BaseLFIVV baseLFIVV[32] = {
   { 0b00001100000100000, 0, 5, 10, 0 }, // fcmp_caf_s
   { 0b00001100000100100, 0, 5, 10, 0 }, // fcmp_ceq_s
   { 0b00001100001000110, 0, 5, 10, 0 }, // fcmp_cle_d
@@ -1896,7 +1897,8 @@ const BaseLFIVV baseLFIVV[31] = {
   { 0b00001100000101000, 0, 5, 10, 0 }, // fcmp_cun_s
   { 0b00001100001000011, 0, 5, 10, 0 }, // fcmp_slt_d
   { 0b00001100001000111, 0, 5, 10, 0 }, // fcmp_sle_d
-  { 0b00001100001001010, 0, 5, 10, 0 }  // fcmp_cult_d
+  { 0b00001100001001010, 0, 5, 10, 0 }, // fcmp_cult_d
+  { 0b00001100001001110, 0, 5, 10, 0 }  // fcmp_cule_d
 };
 
 const BaseLIC baseLIC[3] = {

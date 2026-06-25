@@ -171,6 +171,7 @@ struct Inst {
     kIdFcmp_slt_d,                       //!< Instruction 'fcmp_slt_d'.
     kIdFcmp_sle_d,                       //!< Instruction 'fcmp_sle_d'.
     kIdFcmp_cult_d,                      //!< Instruction 'fcmp_cult_d'.
+    kIdFcmp_cule_d,                      //!< Instruction 'fcmp_cule_d'.
     kIdFcopysign_d,                      //!< Instruction 'fcopysign_d'.
     kIdFcopysign_s,                      //!< Instruction 'fcopysign_s'.
     kIdFcvt_d_s,                         //!< Instruction 'fcvt_d_s'.
