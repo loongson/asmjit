@@ -296,7 +296,7 @@ static constexpr GpX r27 = GpX(27);
 static constexpr GpX r28 = GpX(28);
 static constexpr GpX r29 = GpX(29);
 static constexpr GpX r30 = GpX(30);
-static constexpr GpX r31 = GpX(30);
+static constexpr GpX r31 = GpX(31);
 
 static constexpr GpX zero = GpX(0);
 static constexpr GpX ra = GpX(1);
