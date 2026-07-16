@@ -441,6 +441,10 @@ static inline bool checkVecId(const Operand_& o0, const Operand_& o1) noexcept {
   return (id0 | id1) <= 31u;
 }
 
+static inline bool checkRegId(const Operand_& op) noexcept {
+  return op.as<Reg>().id() <= 31u;
+}
+
 static inline bool checkMemBase(const Mem& mem) noexcept {
   return mem.baseType() == RegType::kLA_GpX && mem.baseId() <= 31;
 }
@@ -1229,7 +1233,7 @@ Error Assembler::_emit(InstId instId, const Operand_& o0, const Operand_& o1,
         const Mem& m = o1.as<Mem>();
         rmRel = &m;
 
-        if (!checkValidRegs(o0)) goto InvalidPhysId;
+        if (!checkRegId(o0)) goto InvalidPhysId;
 
         if (!laCheckMemBaseIndexRel(m)) goto InvalidAddress;
 
